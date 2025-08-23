@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry, Syeda Zahra Gillani</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .whatsapp-contact {
+            position: fixed;
+            right: 16px;
+            bottom: 16px;
+            z-index: 9999;
+            background: #25d366;
+            color: #fff;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            padding: 12px 18px 12px 14px;
+            display: flex;
+            align-items: center;
+            font-size: 1.05rem;
+            text-decoration: none;
+            transition: background 0.2s;
+            max-width: 95vw;
+            word-break: break-word;
+            box-sizing: border-box;
+        }
+        .whatsapp-contact:hover {
+            background: #128c7e;
+            color: #fff;
+        }
+        .whatsapp-contact i {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: rgba(255, 105, 180, 0.3);
+            animation: float 6s ease-in-out infinite;
+            z-index: 0;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(20deg); }
+        }
+        
+        h1 {
+            color: #e84393;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        h2 {
+            color: #e84393;
+            margin: 20px 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .message-container {
+            background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        p {
+            color: #636e72;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .highlight {
+            color: #e84393;
+            font-weight: 600;
+        }
+        
+        .sticker-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .sticker {
+            font-size: 40px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .btn {
+            background: linear-gradient(to right, #e84393 0%, #fd79a8 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px 10px;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(to right, #636e72 0%, #b2bec3 100%);
+        }
+        
+        .video-page {
+            display: none;
+        }
+        
+        .video-container {
+            margin: 20px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+        
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .video-btn {
+            width: 100%;
+            margin: 10px 0;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .video-title {
+            font-weight: bold;
+            color: #e84393;
+            margin: 10px 0;
+        }
+        
+        .page-counter {
+            font-size: 1rem;
+            color: #636e72;
+            margin-top: 15px;
+        }
+        
+        .signature {
+            margin-top: 30px;
+            font-style: italic;
+            color: #e84393;
+            font-weight: 500;
+        }
+        
+        .hearts-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .video-controls {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        /* Forgiveness page specific styles */
+        #page-6 {
+            min-height: 400px;
+            display: none;
+        }
+        
+        .forgiveness-text {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin: 20px 0;
+            color: #e84393;
+            min-height: 60px;
+        }
+        
+        .sticker-img {
+            width: 120px;
+            display: block;
+            margin: 0 auto 15px auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .forgive-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+            background: #e84393;
+            border-radius: 10px;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: highlight 1.5s infinite alternate;
+        }
+        
+        @keyframes highlight {
+            from { background: #e84393; }
+            to { background: #fd79a8; }
+        }
+        
+        .buttons-container {
+            margin-top: 30px;
+            position: relative;
+            height: 100px;
+        }
+        
+        #yes-btn {
+            margin-right: 20px;
+            z-index: 10;
+            position: relative;
+        }
+        
+        #no-btn {
+            position: absolute;
+            transition: all 0.3s ease;
+        }
+        
+        .love-message {
+            display: none;
+            font-size: 2rem;
+            color: #e84393;
+            font-weight: bold;
+            margin-top: 40px;
+            animation: heartBeat 1s infinite;
+        }
+        
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @media (max-width: 600px) {
+            .whatsapp-contact {
+                right: 8px;
+                left: 8px;
+                bottom: 8px;
+                max-width: calc(100vw - 16px);
+                font-size: 0.98rem;
+                padding: 10px 10px 10px 12px;
+            }
+            h1 { font-size: 2rem; }
+            .btn { padding: 12px 30px; font-size: 1rem; }
+            .sticker { font-size: 30px; }
+            .container { padding: 20px; }
+            .forgiveness-text { font-size: 1.1rem; }
+            .love-message { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hearts-container" id="hearts-container"></div>
+        
+        <!-- Apology Page -->
+        <div id="page-1" class="page">
+            <h1>My Dearest Syeda Zahra Gillani</h1>
+            
+            <div class="message-container">
+                <p>I am writing this with a heart full of regret and sorrow for my foolish mistake.</p>
+                <p>I <span class="highlight">deeply regret</span> blocking you due to my misunderstanding, and I can't express how sorry I am.</p>
+                <p>You mean the world to me, and the thought of hurting you pains me more than you can imagine.</p>
+                <p>I hope you can find it in your heart to forgive me and give me another chance.</p>
+                <p>I know Every one Left Me in Any Bad Situation but i Didn't Expect such Kind Of Behaviour Fom You I know my Fault But that dose not mean these things. Dont Behave Like Stranger behave LIke Biwi🥺.</p>
+            </div>
+            
+            <div class="sticker-container">
+                <div class="sticker">😔</div>
+                <div class="sticker">💔</div>
+                <div class="sticker">🥺</div>
+                <div class="sticker">😢</div>
+                <div class="sticker">❤️</div>
+                <div class="sticker">🙏</div>
+            </div>
+            
+            <button class="btn" onclick="showVideos(1)">Please Sab Dekna 🙏🥺 (Click Here) <i class="fas fa-arrow-right"></i></button>
+            
+            <p class="page-counter">Page 1 of 5</p>
+            
+            <p class="signature">Yours always and forever</p>
+        </div>
+        
+        <!-- Video Pages -->
+        <div id="page-2" class="video-page">
+            <h2>My Apology Videos</h2>
+            <p class="page-counter">Videos 1-2 of 8</p>
+            
+            <div class="video-title">You are not jan you are my jahan</div>
+            <button class="btn video-btn" onclick="playVideo(1)">Play Video 1</button>
+            
+            <div class="video-title">You are my direction Forever</div>
+            <button class="btn video-btn" onclick="playVideo(2)">Play Video 2</button>
+            
+            <div class="video-controls">
+                <button class="btn btn-secondary" onclick="showPage(1)">Back to Message</button>
+                <button class="btn" onclick="showVideos(3)">Next Videos <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+        
+        <div id="page-3" class="video-page">
+            <h2>My Apology Videos</h2>
+            <p class="page-counter">Videos 3-4 of 8</p>
+            
+            <div class="video-title">Yaad Arhi hu nhi  bhula sakta 🥺💕</div>
+            <button class="btn video-btn" onclick="playVideo(3)">Play Video 3</button>
+            
+            <div class="video-title">Sab Kuch Tumare Bad💕</div>
+            <button class="btn video-btn" onclick="playVideo(4)">Play Video 4</button>
+            
+            <div class="video-controls">
+                <button class="btn btn-secondary" onclick="showVideos(1)">Previous Videos</button>
+                <button class="btn" onclick="showVideos(5)">Next Videos <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+        
+        <div id="page-4" class="video-page">
+            <h2>My Apology Videos</h2>
+            <p class="page-counter">Videos 5-6 of 8</p>
+            
+            <div class="video-title">Jese Tum Kahu gi💕</div>
+            <button class="btn video-btn" onclick="playVideo(5)">Play Video 5</button>
+            
+            <div class="video-title">Tu a Milo🥺💕</div>
+            <button class="btn video-btn" onclick="playVideo(6)">Play Video 6</button>
+            
+            <div class="video-controls">
+                <button class="btn btn-secondary" onclick="showVideos(3)">Previous Videos</button>
+                <button class="btn" onclick="showVideos(7)">Next Videos <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+        
+        <div id="page-5" class="video-page">
+            <h2>My Apology Videos</h2>
+            <p class="page-counter">Videos 7-8 of 8</p>
+            
+            <div class="video-title">Tumare Katir Sab Kuch 🥺</div>
+            <button class="btn video-btn" onclick="playVideo(7)">Plese yaha bi  click 🥺 7</button>
+            
+            <div class="video-title">These words are not Enough to Describe your Appearance</div>
+            <button class="btn video-btn" onclick="playVideo(8)">click Here 8 🥺 Please</button>
+            
+            <div class="video-controls">
+                <button class="btn btn-secondary" onclick="showVideos(5)">Previous Videos</button>
+                <button class="btn" onclick="showPage(1)">Back to Message</button>
+                <button class="btn" style="background:#e84393; color:#fff; margin-left:10px;" onclick="showForgivenessPage()">Continue</button>
+            </div>
+        </div>
+        
+        <!-- Video Players (initially hidden) -->
+        <div id="video-player" style="display: none;">
+            <div class="video-container">
+                <button class="close-btn" onclick="closeVideo()">&times;</button>
+                <div class="video-wrapper">
+                    <video id="video-element" controls>
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+            <button class="btn" onclick="closeVideo()" style="margin-top: 20px;">Back to Videos</button>
+        </div>
+        
+        <!-- Forgiveness Page -->
+        <div id="page-6" class="page">
+            <h2>Please Forgive Me</h2>
+            <div id="forgiveness-text" class="forgiveness-text"></div>
+            <img src="sticker.jpg" alt="Sorry Sticker" class="sticker-img" />
+            <div class="forgive-text">Please Forgive me</div>
+            <div class="buttons-container">
+                <button id="yes-btn" class="btn">Yes</button>
+                <button id="no-btn" class="btn btn-secondary">No</button>
+            </div>
+            <div id="love-message" class="love-message">I Love You ❤️</div>
+    <!-- Fireworks Canvas (hidden by default) -->
+    <canvas id="fireworks-canvas" style="display:none; position:fixed; left:0; top:0; width:100vw; height:100vh; pointer-events:none; z-index:99999;"></canvas>
+        </div>
+    </div>
+
+    <!-- WhatsApp Contact Tag -->
+    <a class="whatsapp-contact" href="https://wa.me/923286008528" target="_blank" title="Contact on WhatsApp">
+        <i class="fab fa-whatsapp"></i> Be Brave Moti Lets Talk And Fix I didn't want to make You Memory, I want to make biwi🥺 (WhatsApp: 032860008528)
+    </a>
+
+    <script>
+        // Video files array
+        const videoFiles = [
+            "Jahan.mp4",
+            "Direction.mp4", 
+            "YaadArhe.mp4",
+            "terebad.mp4",
+            "jiwetu.mp4",
+            "Tuamilo.mp4",
+            "Besumar.mp4",
+            "karan.mp4"
+        ];
+        
+        // Create floating hearts
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts-container');
+            const heartSymbols = ['❤️', '💕', '💖', '💗', '💓', '💘'];
+            
+            for (let i = 0; i < 25; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+                
+                heartsContainer.appendChild(heart);
+            }
+        }
+        
+        // Show specific page
+        function showPage(pageNumber) {
+            document.querySelectorAll('.page, .video-page').forEach(page => {
+                page.style.display = 'none';
+            });
+            document.getElementById('page-' + pageNumber).style.display = 'block';
+            document.getElementById('video-player').style.display = 'none';
+        }
+        
+        // Show video pages in sequence
+        function showVideos(startIndex) {
+            // Map: 1->2, 3->3, 5->4, 7->5 (page numbers)
+            let pageMap = {1:2, 3:3, 5:4, 7:5};
+            if (pageMap[startIndex]) {
+                showPage(pageMap[startIndex]);
+            }
+        }
+        
+        // Play specific video
+        function playVideo(videoNumber) {
+            if (videoNumber >= 1 && videoNumber <= 8) {
+                const videoElement = document.getElementById('video-element');
+                const source = document.createElement('source');
+                
+                // Using placeholder videos since actual videos aren't available
+                source.src = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+                source.type = 'video/mp4';
+                
+                videoElement.innerHTML = '';
+                videoElement.appendChild(source);
+                
+                document.getElementById('video-player').style.display = 'block';
+                document.querySelectorAll('.page, .video-page').forEach(page => {
+                    page.style.display = 'none';
+                });
+                
+                videoElement.load();
+                videoElement.play().catch(e => {
+                    console.log('Auto-play prevented:', e);
+                });
+            }
+        }
+        
+        // Close video and return to current video page
+        function closeVideo() {
+            const videoElement = document.getElementById('video-element');
+            videoElement.pause();
+            
+            document.getElementById('video-player').style.display = 'none';
+            
+            // Determine which video page to show based on the video that was playing
+            const source = videoElement.querySelector('source');
+            if (source) {
+                // Since we're using placeholder videos, just show page 5
+                showPage(5);
+            }
+        }
+        
+        // Show forgiveness page with animation
+        function showForgivenessPage() {
+            showPage(6);
+            
+            // Animate text
+            const text = "me tume bula dun ye hu nhi skta tm muje bula du ye me hune nhi dun ga";
+            const animDiv = document.getElementById('forgiveness-text');
+            animDiv.textContent = "";
+            
+            let i = 0;
+            function typeAnim() {
+                if (i < text.length) {
+                    animDiv.textContent += text[i];
+                    i++;
+                    setTimeout(typeAnim, 45);
+                }
+            }
+            typeAnim();
+            
+            // Reset love message
+            document.getElementById('love-message').style.display = 'none';
+            
+            // Move No button to random position initially
+            moveNoBtnRandom();
+        }
+        
+        // Move No button to random position
+        function moveNoBtnRandom() {
+            const noBtn = document.getElementById('no-btn');
+            const container = document.querySelector('.buttons-container');
+            
+            // Calculate random position within container
+            const maxX = container.offsetWidth - noBtn.offsetWidth;
+            const maxY = container.offsetHeight - noBtn.offsetHeight;
+            
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+        
+        // Initialize the page
+        window.onload = function() {
+            createHearts();
+            showPage(1);
+            
+            // Set up forgiveness page button handlers
+            const noBtn = document.getElementById('no-btn');
+            const yesBtn = document.getElementById('yes-btn');
+            
+            noBtn.addEventListener('click', function() {
+                // Hide button temporarily
+                this.style.visibility = 'hidden';
+                
+                // Show button again after a second in a random position
+                setTimeout(() => {
+                    this.style.visibility = 'visible';
+                    moveNoBtnRandom();
+                }, 1000);
+            });
+            
+            yesBtn.addEventListener('click', function() {
+                // Show love message
+                document.getElementById('love-message').style.display = 'block';
+                // Hide buttons
+                yesBtn.style.display = 'none';
+                noBtn.style.display = 'none';
+                launchFireworks();
+        // Fireworks animation
+        function launchFireworks() {
+            const canvas = document.getElementById('fireworks-canvas');
+            const ctx = canvas.getContext('2d');
+            // Set canvas size
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            canvas.style.display = 'block';
+            let particles = [];
+            let frame = 0;
+            function randomColor() {
+                const colors = ['#ff7675','#fdcb6e','#00b894','#00cec9','#0984e3','#6c5ce7','#e17055','#fd79a8'];
+                return colors[Math.floor(Math.random()*colors.length)];
+            }
+            function createFirework() {
+                const x = Math.random() * canvas.width * 0.8 + canvas.width*0.1;
+                const y = Math.random() * canvas.height * 0.3 + canvas.height*0.2;
+                const color = randomColor();
+                for (let i = 0; i < 36; i++) {
+                    const angle = (i / 36) * 2 * Math.PI;
+                    const speed = Math.random() * 4 + 2;
+                    particles.push({
+                        x, y,
+                        vx: Math.cos(angle) * speed,
+                        vy: Math.sin(angle) * speed,
+                        alpha: 1,
+                        color
+                    });
+                }
+            }
+            // Launch a few fireworks
+            for (let i = 0; i < 6; i++) setTimeout(createFirework, i*300);
+            function animate() {
+                ctx.clearRect(0,0,canvas.width,canvas.height);
+                particles.forEach(p => {
+                    ctx.globalAlpha = p.alpha;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, 3, 0, 2*Math.PI);
+                    ctx.fillStyle = p.color;
+                    ctx.fill();
+                });
+                particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += 0.04; // gravity
+                    p.alpha -= 0.012;
+                });
+                particles = particles.filter(p => p.alpha > 0);
+                frame++;
+                if (frame < 120 || particles.length > 0) {
+                    requestAnimationFrame(animate);
+                } else {
+                    canvas.style.display = 'none';
+                }
+            }
+            animate();
+        }
+            });
+        };
+    </script>
+</body>
+</html>
