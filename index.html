@@ -529,19 +529,25 @@
             if (videoNumber >= 1 && videoNumber <= 8) {
                 const videoElement = document.getElementById('video-element');
                 const source = document.createElement('source');
-                
-                // Using placeholder videos since actual videos aren't available
-                source.src = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+                // Use the correct local video file
+                const videoFiles = [
+                    "Jahan.mp4",
+                    "Direction.mp4",
+                    "YaadArhe.mp4",
+                    "terebad.mp4",
+                    "jiwetu.mp4",
+                    "Tuamilo.mp4",
+                    "Besumar.mp4",
+                    "karan.mp4"
+                ];
+                source.src = videoFiles[videoNumber - 1];
                 source.type = 'video/mp4';
-                
                 videoElement.innerHTML = '';
                 videoElement.appendChild(source);
-                
                 document.getElementById('video-player').style.display = 'block';
                 document.querySelectorAll('.page, .video-page').forEach(page => {
                     page.style.display = 'none';
                 });
-                
                 videoElement.load();
                 videoElement.play().catch(e => {
                     console.log('Auto-play prevented:', e);
@@ -553,14 +559,29 @@
         function closeVideo() {
             const videoElement = document.getElementById('video-element');
             videoElement.pause();
-            
             document.getElementById('video-player').style.display = 'none';
-            
             // Determine which video page to show based on the video that was playing
             const source = videoElement.querySelector('source');
             if (source) {
-                // Since we're using placeholder videos, just show page 5
-                showPage(5);
+                // Map video index to correct page: 1-2 -> 2, 3-4 -> 3, 5-6 -> 4, 7-8 -> 5
+                const videoFiles = [
+                    "Jahan.mp4",
+                    "Direction.mp4",
+                    "YaadArhe.mp4",
+                    "terebad.mp4",
+                    "jiwetu.mp4",
+                    "Tuamilo.mp4",
+                    "Besumar.mp4",
+                    "karan.mp4"
+                ];
+                const fileName = source.src.split('/').pop();
+                const idx = videoFiles.indexOf(fileName);
+                if (idx >= 0) {
+                    const pageNumber = Math.floor(idx / 2) + 2;
+                    showPage(pageNumber);
+                } else {
+                    showPage(2); // fallback
+                }
             }
         }
         
